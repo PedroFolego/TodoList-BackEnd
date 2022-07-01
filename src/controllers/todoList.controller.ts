@@ -7,6 +7,10 @@ export default class TodoController {
 
   async get(_req: Request, res: Response, next: NextFunction) {
     try {
+      console.log('ola');
+      
+      console.log(this.service);
+      
       const list = await this.service.get();
       return res.status(StatusCodes.OK).json(list);
     } catch (error) {
@@ -34,7 +38,8 @@ export default class TodoController {
 
   async delete(req: Request, res: Response, next: NextFunction) {
     try {
-      this.service.delete(req.body);
+      const { id } = req.body;
+      this.service.delete(id);
       return res.status(StatusCodes.NO_CONTENT).end();
     } catch (error) {
       next(error);
