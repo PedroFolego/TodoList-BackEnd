@@ -1,12 +1,12 @@
-import { Pool } from 'mysql2/promise';
-import { MSCTodo, Todo } from '../interfaces';
+// import { Pool } from 'mysql2/promise';
+import { MSCTodo, Todo, HandlePool } from '../interfaces';
 
 export default class TodoModel implements MSCTodo {
-  constructor(private connection: Pool) { }
+  constructor(private connection: HandlePool) { }
 
   async get() {
     const [list] = await this.connection.execute('SELECT * FROM TodoList.List;');
-    return list as Todo[];
+    return list;
   }
 
   async put(value: Todo) {

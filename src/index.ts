@@ -1,10 +1,9 @@
 import * as dotenv from 'dotenv';
-import app from './app';
+import App from './app';
+import connection from './models/connetion';
 
 dotenv.config();
 
-const { PORT } = process.env;
+const PORT = process.env.PORT || 3000;
 
-const server = app.listen(PORT, () => console.log(`Rodando na porta: ${PORT}`));
-
-export default server;
+new App(connection).start(PORT);

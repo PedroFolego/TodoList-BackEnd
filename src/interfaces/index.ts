@@ -1,3 +1,5 @@
+import { OkPacket, Pool, ResultSetHeader, RowDataPacket } from 'mysql2/promise';
+
 export interface ErrorHandler extends Error {
   status: number,
 }
@@ -10,8 +12,10 @@ export interface Todo {
 }
 
 export interface MSCTodo {
-  get(): Promise<Todo[]>,
+  get(): Promise<RowDataPacket[] | RowDataPacket[][] | OkPacket | OkPacket[] | ResultSetHeader>,
   put(values: Todo): void,
   post(values: Todo): void,
   delete(id: number): void
 }
+
+export type HandlePool = Pick<Pool, 'execute'>;
