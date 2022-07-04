@@ -6,11 +6,7 @@ export default class TodoController {
   constructor(private service: MSCTodo) { }
 
   async get(_req: Request, res: Response, next: NextFunction) {
-    try {
-      console.log('ola');
-      
-      console.log(this.service);
-      
+    try {    
       const list = await this.service.get();
       return res.status(StatusCodes.OK).json(list);
     } catch (error) {

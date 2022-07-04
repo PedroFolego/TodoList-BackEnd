@@ -1,12 +1,12 @@
 import express from 'express';
 import TodoController from './controllers/todoList.controller';
-import { HandlePool } from './interfaces';
 import erroMiddleware from './middlewares/errorMiddleware';
+import connection from './models/connetion';
 import TodoModel from './models/todoList.model';
 import TodoService from './services/todoList.service';
 
-const entityFactory = (db: HandlePool) => {
-  const model = new TodoModel(db);
+const entityFactory = () => {
+  const model = new TodoModel(connection);
   const service = new TodoService(model);
   const controller = new TodoController(service);
   return controller;
@@ -15,10 +15,7 @@ const entityFactory = (db: HandlePool) => {
 class App {
   public app: express.Express;
 
-  private db: HandlePool;
-
-  constructor(db: HandlePool) {
-    this.db = db;
+  constructor() {
     this.app = express();
     this.config();
   }
@@ -35,10 +32,10 @@ class App {
     };
     this.app.use(accessControl);
     this.app.use(express.json());
-    this.app.get('/', (req, res, next) => entityFactory(this.db).get(req, res, next));
-    this.app.put('/', (req, res, next) => entityFactory(this.db).put(req, res, next));
-    this.app.post('/', (req, res, next) => entityFactory(this.db).post(req, res, next));
-    this.app.delete('/', (req, res, next) => entityFactory(this.db).delete(req, res, next));
+    this.app.get('/', (req, res, next) => entityFactory().get(req, res, next));
+    this.app.put('/', (req, res, next) => entityFactory().put(req, res, next));
+    this.app.post('/', (req, res, next) => entityFactory().post(req, res, next));
+    this.app.delete('/', (req, res, next) => entityFactory().delete(req, res, next));
     this.app.use(erroMiddleware);
   }
 
@@ -47,4 +44,5 @@ class App {
   }
 }
 
-export default App;
+export { App };
+export const { app } = new App(); 
