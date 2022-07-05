@@ -22,7 +22,7 @@ sendo possível realizar as operações que se pode fazer em um banco de dados M
 cd TodoList-BackEnd/
 docker-compose up -d
 ```
-* Depois acesse o Terminal Interativo com `docker exec -it todolist` e instale as dependências com `npm install`
+* Depois acesse o Terminal Interativo com `docker exec -it todolist bash` e instale as dependências com `npm install`
 * Acesse o banco criado e crie a tabela usando o arquivo `todoSQL.sql`
 
 ## Rodando Localmente
