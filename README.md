@@ -36,7 +36,7 @@ npm install
 
 ### Criando o Banco de Dados
 
-* Abra o arquivo StoreSmith.sql
+* Abra o arquivo StoreSmith.sql e crie a tabela no banco.
 * (Opcional): Execute as querys para preencher o banco com valores iniciais.  
 
 ## Criando gerenciamento de ambiente
