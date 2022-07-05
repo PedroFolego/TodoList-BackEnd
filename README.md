@@ -7,19 +7,34 @@ API para o desenvolvimento de um aplicativo de lista de tarefas, utilizando Type
 Usando as camadas da aplicação (Models, Service e Controllers),
 sendo possível realizar as operações que se pode fazer em um banco de dados MySQL: (CRUD)Criação, Leitura, Atualização e Exclusão.
 
+> Para rodar o Frontend em conjunto com a API acesse: https://github.com/PedroFolego/TodoList-Frontend
+
 ## Técnologias usadas
 
 > Desenvolvido usando: NodeJS, ExpressJS, TypeScript, MYSQL, ES6.
 
-## Instalando Dependências
 
+## Rodando com o Docker
+
+### Criando Containers: 
+
+```
+cd TodoList-BackEnd/
+docker-compose up -d
+```
+* Depois acesse o Terminal Interativo com `docker exec -it todolist` e instale as dependências com `npm install`
+* Acesse o banco criado e crie a tabela usando o arquivo `todoSQL.sql`
+
+## Rodando Localmente
+
+### Instalando Dependências
 
 ```bash
 cd TodoList-BackEnd/ 
 npm install
 ``` 
 
-## Criando o Banco de Dados
+### Criando o Banco de Dados
 
 * Abra o arquivo StoreSmith.sql
 * (Opcional): Execute as querys para preencher o banco com valores iniciais.  
@@ -35,8 +50,7 @@ MYSQL_USER=userSQL
 MYSQL_PASSWORD=passwordSQL
 ```
 
-
-## Executando aplicação
+# Executando aplicação
 
 * Para rodar o back-end:
 
